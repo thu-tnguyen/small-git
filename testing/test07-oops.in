@@ -1,0 +1,56 @@
+# An Integrated Test including add, commit, log, reset
+> init
+<<<
++ wug.txt wug.txt
++ hello.txt hello.txt
+> add wug.txt
+<<<
+> add hello.txt
+<<<
+> commit "version 1 of wug.txt and hello.txt"
+<<<
++ wug.txt notwug.txt
++ world.txt world.txt
+> add wug.txt
+<<<
+> add world.txt
+<<<
+> commit "version 1 of world.txt and version 2 of wug.txt"
+<<<
+= wug.txt notwug.txt
+# Each ${HEADER} captures its commit UID.
+D UID "[a-f0-9]+"
+D HEADER "commit (${UID})"
+D DATE "Date: \w\w\w \w\w\w \d+ \d\d:\d\d:\d\d \d\d\d\d [-+]\d\d\d\d"
+D ARBLINE "[^\n]*(?=\n|\Z)"
+> global-log
+===
+${HEADER}
+${DATE}
+${ARBLINE}
+
+===
+${HEADER}
+${DATE}
+${ARBLINE}
+
+===
+${HEADER}
+${DATE}
+${ARBLINE}
+
+<<<*
+# UID of second version
+D UID2 "${1}"
+# UID of current version
+D UID1 "${2}"
+> add world.txt
+<<<
+> add world.txt
+<<<
+> add world.txt
+<<<
+> add world.txt
+<<<
+> add world.txt
+<<<

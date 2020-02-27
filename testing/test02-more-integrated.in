@@ -1,0 +1,57 @@
+# An Integration Test for branch, checkout [branch], rm, rm-branch status, merge
+> init
+<<<
+> branch "a branch"
+<<<
++ wug.txt wug.txt
++ world.txt world.txt
+> add wug.txt
+<<<
+> commit "added wug.txt"
+<<<
+> checkout "a branch"
+<<<
+* wug.txt
+> add world.txt
+<<<
+> commit "added world.txt"
+<<<
+> merge master
+<<<
++ hello.txt hello.txt
+> add hello.txt
+<<<
+> commit "added hello.txt"
+<<<
+> rm world.txt
+<<<
+> commit "removed world.txt"
+<<<
++ world.txt world.txt
+> add world.txt
+<<<
+> checkout master
+<<<
++ wug.txt hello.txt
+> add wug.txt
+<<<
+> rm-branch "a branch"
+<<<
+D ARBLINES "(?:(?:.|\n)*(?:\n|\Z)|\A|\Z)"
+> status
+=== Branches ===
+\*master
+
+=== Staged Files ===
+wug.txt
+
+=== Removed Files ===
+
+
+=== Modifications Not Staged For Commit ===
+
+
+=== Untracked Files ===
+world.txt
+
+<<<
